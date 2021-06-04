@@ -13,7 +13,7 @@ public class UserDaoTest {
         //获得sqlSession对象
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         //执行SQL
-        UserDao userDao = sqlSession.getMapper(UserDao.class);
+        UserMapper userDao = sqlSession.getMapper(UserMapper.class);
         List<User> userList = userDao.getUserList();
         for(User user : userList){
             System.out.println(user);
