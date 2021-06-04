@@ -8,4 +8,8 @@
     <select id="getUserList" resultType="com.hbuas.POJO.User">
         select * from mybatis.user
     </select>
+    <!-- parameterType 传入参数类型 -->
+    <select id="getUserById" resultType="com.hbuas.POJO.User" parameterType="int">
+        select * from mybatis.user where id = #{id}
+    </select>
 </mapper>
