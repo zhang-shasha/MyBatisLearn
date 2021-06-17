@@ -19,4 +19,18 @@ public class UserMapperTest {
         }
         sqlSession.close();
     }
+    @Test
+    public void getUserById(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User user = mapper.getUserById(1);
+        System.out.println(user);
+    }
+    @Test
+    public void addUser(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        User u = new User(7,"Shuang","87704560");
+        mapper.addUser(u);
+    }
 }
