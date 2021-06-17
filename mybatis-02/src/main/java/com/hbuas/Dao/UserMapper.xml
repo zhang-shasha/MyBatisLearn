@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 绑定一个对应的 Dao/Mapper接口-->
+<mapper namespace="com.hbuas.Dao.UserMapper">
+    <!-- update 修改语句 -->
+    <update id="updateUser" parameterType="User">
+        update mybatis.user set name = #{name},pwd = #{pwd} where id = #{id}
+    </update>
+    <!-- delete 删除 -->
+    <delete id="deleteUser" parameterType = "int">
+        delete from mybatis.user where id = #{id}
+    </delete>
+    <!--sql查询语句-->
+    <select id="getUserList" resultType="User">
+        select * from mybatis.user
+    </select>
+    <!-- parameterType 传入参数类型 -->
+    <select id="getUserById" resultType="com.hbuas.POJO.User" parameterType="int">
+        select * from mybatis.user where id = #{id}
+    </select>
+    <!--insert 插入语句 -->
+    <insert id="addUser" parameterType="com.hbuas.POJO.User">
+        <!--对象在中的属性可以直接取出来用-->
+        insert into mybatis.user (id,name,pwd) values(#{id},#{name},#{pwd});
+    </insert>
+</mapper>
