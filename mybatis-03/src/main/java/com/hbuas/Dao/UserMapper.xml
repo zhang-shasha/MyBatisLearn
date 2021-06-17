@@ -19,4 +19,8 @@
     <select id="getUserById" resultMap="UserMap" parameterType="int">
         select * from mybatis.user where id = #{id}
     </select>
+    <!--分页查询-->
+    <select id="getUserByLimit" parameterType="map" resultMap="UserMap">
+        select * from mybatis.user limit #{startIndex},#{pageSize}
+    </select>
 </mapper>
