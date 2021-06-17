@@ -7,6 +7,11 @@
 <configuration>
     <!--引入配置文件-->
     <properties resource="db.properties"/>
+    <settings>
+        <!--标准的日志工厂-->
+        <!--setting name="logImpl" value="STDOUT_LOGGING"/-->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
     <!--别名-->
     <typeAliases>
         <typeAlias alias="User" type="com.hbuas.POJO.User"/>
