@@ -7,6 +7,15 @@
     <insert id="addBlog" parameterType="blog">
         insert into mybatis.blog(id, title, author, create_time, views) values(#{id}, #{title},#{author},#{createTime},#{views});
     </insert>
+    <!--sql片段-->
+    <sql id="if-title-author">
+        <if test="title!=null">
+            and title = #{title}
+        </if>
+        <if test="author!=null">
+            and author = #{author}
+        </if>
+    </sql>
     <update id="updateBlog" parameterType="map">
         update mybatis.blog
         <!--set标签用于消除update语句的,-->
@@ -20,13 +29,8 @@
         select * from mybatis.blog
         <!--使用where标签来 消除拼接不规范的条件-->
         <where>
-            <!--动态sql if 语句-->
-            <if test="title!=null">
-                and title = #{title}
-            </if>
-            <if test="author!=null">
-                and author = #{author}
-            </if>
+            <!--测试sql片段-->
+            <include refid="if-title-author"/>
         </where>
     </select>
     <select id="getBlogsChoose" resultType="Blog" parameterType="map">

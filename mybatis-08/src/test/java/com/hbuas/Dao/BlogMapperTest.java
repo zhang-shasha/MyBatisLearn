@@ -29,9 +29,9 @@ public class BlogMapperTest {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
         HashMap<Object, Object> map = new HashMap<>();
-//        map.put("author","zhang");
-        map.put("title","LearnVUE");
-        List<Blog> blogList = mapper.getBlogsChoose(map);
+        map.put("author","zhang");
+//        map.put("title","LearnVUE");
+        List<Blog> blogList = mapper.getBlogs(map);
         for (Blog blog : blogList) {
             System.out.println(blog);
         }
