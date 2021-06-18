@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 绑定一个对应的 Dao/Mapper接口-->
+<mapper namespace="com.hbuas.Dao.BlogMapper">
+
+    <insert id="addBlog" parameterType="blog">
+        insert into mybatis.blog(id, title, author, create_time, views) values(#{id}, #{title},#{author},#{createTime},#{views});
+    </insert>
+    <select id="getBlogs" resultType="Blog" parameterType="map">
+        select * from mybatis.blog where true
+        <!--动态sql if 语句-->
+        <if test="title!=null">
+            and title = #{title}
+        </if>
+        <if test="author!=null">
+            and author = #{author}
+        </if>
+    </select>
+</mapper>
