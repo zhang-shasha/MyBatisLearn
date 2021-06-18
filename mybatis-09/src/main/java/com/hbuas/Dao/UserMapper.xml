@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hbuas.Dao.UserMapper">
     <!--开启二级缓存-->
-    <cache/>
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
     <select id="queryUserById" resultType="User">
         select * from mybatis.user where id = #{id}
     </select>
