@@ -4,10 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace 绑定一个对应的 Dao/Mapper接口-->
 <mapper namespace="com.hbuas.Dao.BlogMapper">
-
     <insert id="addBlog" parameterType="blog">
         insert into mybatis.blog(id, title, author, create_time, views) values(#{id}, #{title},#{author},#{createTime},#{views});
     </insert>
+    <update id="updateBlog" parameterType="map">
+        update mybatis.blog
+        <!--set标签用于消除update语句的,-->
+        <set>
+            <if test="title!=null">title = #{title},</if>
+            <if test="author!=null">author = #{author}</if>
+        </set>
+        where id = #{id}
+    </update>
     <select id="getBlogs" resultType="Blog" parameterType="map">
         select * from mybatis.blog
         <!--使用where标签来 消除拼接不规范的条件-->
@@ -19,6 +27,23 @@
             <if test="author!=null">
                 and author = #{author}
             </if>
+        </where>
+    </select>
+    <select id="getBlogsChoose" resultType="Blog" parameterType="map">
+        select * from mybatis.blog
+        <where>
+            <!--类似于Java的switch语句-->
+            <choose>
+                <when test="title!=null">
+                    title = #{title}
+                </when>
+                <when test="author!=null">
+                    and author = #{author}
+                </when>
+                <otherwise>
+                    and views = #{views}
+                </otherwise>
+            </choose>
         </where>
     </select>
 </mapper>
