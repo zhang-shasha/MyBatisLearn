@@ -9,13 +9,16 @@
         insert into mybatis.blog(id, title, author, create_time, views) values(#{id}, #{title},#{author},#{createTime},#{views});
     </insert>
     <select id="getBlogs" resultType="Blog" parameterType="map">
-        select * from mybatis.blog where true
-        <!--动态sql if 语句-->
-        <if test="title!=null">
-            and title = #{title}
-        </if>
-        <if test="author!=null">
-            and author = #{author}
-        </if>
+        select * from mybatis.blog
+        <!--使用where标签来 消除拼接不规范的条件-->
+        <where>
+            <!--动态sql if 语句-->
+            <if test="title!=null">
+                and title = #{title}
+            </if>
+            <if test="author!=null">
+                and author = #{author}
+            </if>
+        </where>
     </select>
 </mapper>
